@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -31,14 +32,11 @@ import com.example.harrypotter.R
 import retrofit2.Response
 
 @Composable
-fun Characters(navController: NavHostController){
+fun Characters(viewModel: Mainviewmodel,navController: NavHostController){
 
-   var context = LocalContext.current
-   var viewModel  : Mainviewmodel  = hiltViewModel()
+    var context = LocalContext.current
 
     var isloading  by remember { mutableStateOf(false)}
-
-
 
     var characters  = viewModel._characters.collectAsState()
 
@@ -72,9 +70,9 @@ fun Characters(navController: NavHostController){
              Row(modifier = Modifier
                  .fillMaxWidth()
                  .clickable(onClick = {
-                     Toast
-                         .makeText(context, item.actor, Toast.LENGTH_LONG)
-                         .show()
+                 var character  = HarrycharsItem(item.actor, item.alive, item.alternate_actors, item.alternate_names, item.ancestry, item.dateOfBirth, item.eyeColour, item.gender, item.hairColour, item.hogwartsStaff, item.hogwartsStudent, item.house, item.id, item.image, item.name, item.patronus, item.species, item.wand, item.wizard, item.yearOfBirth)
+                  navController.currentBackStackEntry?.savedStateHandle?.set("characters",character)
+                  navController.navigate(Screens.Characterinfo.route)
                  })){
 
 

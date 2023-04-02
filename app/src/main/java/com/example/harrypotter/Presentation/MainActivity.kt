@@ -34,8 +34,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
-                     Navigate()
+                    var viewModel : Mainviewmodel  = hiltViewModel()
+                     Navigate(viewModel)
                 }
             }
         }
@@ -43,16 +43,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Navigate(){
+fun Navigate(viewModel: Mainviewmodel){
       var navController  = rememberNavController()
 
       NavHost(navController = navController, startDestination = Screens.Characters.route ){
           composable(Screens.Characters.route){
-                Characters(navController)
+                Characters(viewModel,navController)
           }
 
           composable(Screens.Characterinfo.route){
-              Characterinfo()
+              Characterinfo(navController)
           }
 
 
