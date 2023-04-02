@@ -3,7 +3,9 @@ package com.example.harrypotter.Domain.Models
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-data class HarrycharsItem(
+
+@Parcelize
+data class Harrycharactersparcelables(
     val actor: String,
     val alive: Boolean,
     val alternate_actors: List<String>,
@@ -24,4 +26,4 @@ data class HarrycharsItem(
     val wand: Wand,
     val wizard: Boolean,
     val yearOfBirth: Int
-)
+): Parcelable

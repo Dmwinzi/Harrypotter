@@ -14,22 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.harrypotter.Domain.Models.Harrycharactersparcelables
 import com.example.harrypotter.Domain.Models.HarrycharsItem
 import com.example.harrypotter.Domain.Models.Resource
 import com.example.harrypotter.R
-import retrofit2.Response
 
 @Composable
 fun Characters(viewModel: Mainviewmodel,navController: NavHostController){
@@ -70,12 +66,10 @@ fun Characters(viewModel: Mainviewmodel,navController: NavHostController){
              Row(modifier = Modifier
                  .fillMaxWidth()
                  .clickable(onClick = {
-                 var character  = HarrycharsItem(item.actor, item.alive, item.alternate_actors, item.alternate_names, item.ancestry, item.dateOfBirth, item.eyeColour, item.gender, item.hairColour, item.hogwartsStaff, item.hogwartsStudent, item.house, item.id, item.image, item.name, item.patronus, item.species, item.wand, item.wizard, item.yearOfBirth)
-                  navController.currentBackStackEntry?.savedStateHandle?.set("characters",character)
-                  navController.navigate(Screens.Characterinfo.route)
+                 var character  = Harrycharactersparcelables(item.actor, item.alive, item.alternate_actors, item.alternate_names, item.ancestry, item.dateOfBirth, item.eyeColour, item.gender, item.hairColour, item.hogwartsStaff, item.hogwartsStudent, item.house, item.id, item.image, item.name, item.patronus, item.species, item.wand, item.wizard, item.yearOfBirth)
+                     navController.currentBackStackEntry?.savedStateHandle?.set("characters",character)
+                     navController.navigate(Screens.Characterinfo.route)
                  })){
-
-
                  Row(modifier = Modifier
                      .fillMaxWidth()
                      .padding(20.dp))

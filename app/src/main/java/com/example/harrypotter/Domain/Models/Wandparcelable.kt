@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Wand(
+data class Wandparcelable(
     val core : String,
     val length: Double,
     val wood: String
-): Parcelable
+) : Parcelable

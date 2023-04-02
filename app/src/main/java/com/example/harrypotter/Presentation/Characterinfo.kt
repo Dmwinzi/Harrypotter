@@ -24,14 +24,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.harrypotter.Domain.Models.Harrycharactersparcelables
 import com.example.harrypotter.Domain.Models.HarrycharsItem
 
 
 @Composable
 fun Characterinfo(navcostController: NavHostController){
 
-    var characters = navcostController.previousBackStackEntry?.savedStateHandle?.get<HarrycharsItem>("characters")
-    var results  by remember { mutableStateOf(mutableSetOf<HarrycharsItem>()) }
+    var characters = navcostController.previousBackStackEntry?.savedStateHandle?.get<Harrycharactersparcelables>("characters")
+    var results  by remember { mutableStateOf(mutableSetOf<Harrycharactersparcelables>()) }
     var context  = LocalContext.current
 
         if (characters != null) {
@@ -50,22 +51,28 @@ fun Characterinfo(navcostController: NavHostController){
                 Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier
                     .padding(top = 20.dp)
                     .fillMaxSize()) {
-                    AsyncImage(model = ImageRequest.Builder(context).data(item.image).build(), contentDescription = null,
-                        error = painterResource(id = com.example.harrypotter.R.drawable.baseline_person_24),
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .width(80.dp)
-                            .height(80.dp)
+                    if(item.image  != null){
+                        AsyncImage(model = ImageRequest.Builder(context).data(item.image).build(), contentDescription = null,
+                            error = painterResource(id = com.example.harrypotter.R.drawable.baseline_person_24),
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .clip(CircleShape)
+                                .width(80.dp)
+                                .height(80.dp)
                         )
+                    }
                     Spacer(modifier = Modifier.height(10.dp) )
-                    Text(text = "Name:\t ${item.actor}", style = TextStyle(fontSize = 15.sp))
+                    if (item.actor != null){
+                        Text(text = "Name:\t ${item.actor}", style = TextStyle(fontSize = 15.sp))
+                    }
+                    Spacer(modifier = Modifier.height(10.dp) )
+                    Text(text = "Alternate names:\t ${item.alternate_names}", style = TextStyle(fontSize = 15.sp))
                     Spacer(modifier = Modifier.height(10.dp) )
                     Text(text = "Gender:\t ${item.gender}", style = TextStyle(fontSize = 15.sp))
                     Spacer(modifier = Modifier.height(15.dp) )
                     Text(text = "Date of Birth:\t ${item.dateOfBirth.toString()}",style = TextStyle(fontSize = 15.sp))
 
-                    Column(horizontalAlignment = Alignment.Start,modifier = Modifier.padding(start = 15.dp,top = 40.dp)) {
+                    Column(modifier = Modifier.padding(start = 15.dp,top = 40.dp)) {
                         Text(text = "MoreInfo",style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
                         Spacer(modifier = Modifier.height(10.dp) )
                         Text(text = "Species:\t ${item.species}",style = TextStyle(fontSize = 18.sp))
