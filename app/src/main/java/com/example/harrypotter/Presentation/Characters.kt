@@ -66,7 +66,7 @@ fun Characters(viewModel: Mainviewmodel,navController: NavHostController){
              Row(modifier = Modifier
                  .fillMaxWidth()
                  .clickable(onClick = {
-                 var character  = Harrycharactersparcelables(item.actor, item.alive, item.alternate_actors, item.alternate_names, item.ancestry, item.dateOfBirth, item.eyeColour, item.gender, item.hairColour, item.hogwartsStaff, item.hogwartsStudent, item.house, item.id, item.image, item.name, item.patronus, item.species, item.wand, item.wizard, item.yearOfBirth)
+                 var character  = Harrycharactersparcelables(item.actor, item.alive, item.alternate_actors, item.alternate_names, item.ancestry, item.dateOfBirth,item.eyeColour, item.gender, item.hairColour, item.hogwartsStaff, item.hogwartsStudent, item.house, item.id, item.image, item.name, item.patronus, item.species, item.wand, item.wizard, item.yearOfBirth)
                      navController.currentBackStackEntry?.savedStateHandle?.set("characters",character)
                      navController.navigate(Screens.Characterinfo.route)
                  })){

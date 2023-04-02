@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Wandparcelable(
-    val core : String,
-    val length: Double,
-    val wood: String
+    val core : String = "",
+    val length: Double = "".toDouble(),
+    val wood: String = ""
 ) : Parcelable

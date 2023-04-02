@@ -48,36 +48,34 @@ fun Characterinfo(navcostController: NavHostController){
     ) { paddingvalues ->
         LazyColumn(modifier = Modifier.padding(paddingvalues)){
             items(results.toList()){ item ->
-                Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier
+                Column(modifier = Modifier
                     .padding(top = 20.dp)
                     .fillMaxSize()) {
-                    if(item.image  != null){
-                        AsyncImage(model = ImageRequest.Builder(context).data(item.image).build(), contentDescription = null,
-                            error = painterResource(id = com.example.harrypotter.R.drawable.baseline_person_24),
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .clip(CircleShape)
-                                .width(80.dp)
-                                .height(80.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(10.dp) )
-                    if (item.actor != null){
-                        Text(text = "Name:\t ${item.actor}", style = TextStyle(fontSize = 15.sp))
-                    }
-                    Spacer(modifier = Modifier.height(10.dp) )
-                    Text(text = "Alternate names:\t ${item.alternate_names}", style = TextStyle(fontSize = 15.sp))
-                    Spacer(modifier = Modifier.height(10.dp) )
-                    Text(text = "Gender:\t ${item.gender}", style = TextStyle(fontSize = 15.sp))
-                    Spacer(modifier = Modifier.height(15.dp) )
-                    Text(text = "Date of Birth:\t ${item.dateOfBirth.toString()}",style = TextStyle(fontSize = 15.sp))
+                       Column(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+                           AsyncImage(model = ImageRequest.Builder(context).data(item.image).build(), contentDescription = null,
+                               error = painterResource(id = com.example.harrypotter.R.drawable.baseline_person_24),
+                               contentScale = ContentScale.Crop,
+                               modifier = Modifier
+                                   .clip(CircleShape)
+                                   .width(80.dp)
+                                   .height(80.dp)
+                           )
+                           Spacer(modifier = Modifier.height(10.dp) )
+                           Text(text = "Name:\t ${item.actor}", style = TextStyle(fontSize = 15.sp))
+                           Spacer(modifier = Modifier.height(10.dp) )
+                           Text(text = "Alternate names:\t ${item.alternate_names}", style = TextStyle(fontSize = 15.sp))
+                           Spacer(modifier = Modifier.height(10.dp) )
+                           Text(text = "Gender:\t ${item.gender}", style = TextStyle(fontSize = 15.sp))
+                           Spacer(modifier = Modifier.height(15.dp) )
+                           Text(text = "Date of Birth:\t ${item.dateOfBirth}",style = TextStyle(fontSize = 15.sp))
+                       }
 
                     Column(modifier = Modifier.padding(start = 15.dp,top = 40.dp)) {
-                        Text(text = "MoreInfo",style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
+                        Text(text = "More Info",style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
                         Spacer(modifier = Modifier.height(10.dp) )
-                        Text(text = "Species:\t ${item.species}",style = TextStyle(fontSize = 18.sp))
+                        Text(text = "Species:\t  ${item.species}",style = TextStyle(fontSize = 18.sp))
                         Spacer(modifier = Modifier.height(10.dp) )
-                        Text(text = "Alive:\t ${item.alive}",style = TextStyle(fontSize = 18.sp))
+                        Text(text = "Alive:\t  ${item.alive}",style = TextStyle(fontSize = 18.sp))
                         Spacer(modifier = Modifier.height(10.dp) )
                         Text(text = "Ancenstry:\t ${item.ancestry}",style = TextStyle(fontSize = 18.sp))
                         Spacer(modifier = Modifier.height(10.dp) )
