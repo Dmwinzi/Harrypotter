@@ -46,7 +46,6 @@ fun Characters(viewModel: Mainviewmodel,navController: NavHostController){
     var allcharacters = remember { mutableStateOf(listOf<HarrycharsItem>()) }
    var searchtext  by remember { mutableStateOf("")}
    var filteredcharacters by remember { mutableStateOf(listOf<HarrycharsItem>()) }
-   var listoffilteredcharacters by  remember { mutableStateOf(mutableListOf<HarrycharsItem>()) }
 
     when(characters.value){
         is Resource.Success -> {
@@ -70,9 +69,6 @@ fun Characters(viewModel: Mainviewmodel,navController: NavHostController){
                it.actor.contains(searchtext, ignoreCase = true)
            }
        }
-
-
-
 
    Scaffold(modifier = Modifier.fillMaxSize(),
        topBar = {
@@ -101,28 +97,7 @@ fun Characters(viewModel: Mainviewmodel,navController: NavHostController){
              Row(modifier = Modifier
                  .fillMaxWidth()
                  .clickable(onClick = {
-                     var character = Harrycharactersparcelables(
-                         item.actor,
-                         item.alive,
-                         item.alternate_actors,
-                         item.alternate_names,
-                         item.ancestry,
-                         item.dateOfBirth,
-                         item.eyeColour,
-                         item.gender,
-                         item.hairColour,
-                         item.hogwartsStaff,
-                         item.hogwartsStudent,
-                         item.house,
-                         item.id,
-                         item.image,
-                         item.name,
-                         item.patronus,
-                         item.species,
-                         item.wand,
-                         item.wizard,
-                         item.yearOfBirth
-                     )
+                     var character = Harrycharactersparcelables(item.actor, item.alive, item.alternate_actors, item.alternate_names, item.ancestry, item.dateOfBirth, item.eyeColour, item.gender, item.hairColour, item.hogwartsStaff, item.hogwartsStudent, item.house, item.id, item.image, item.name, item.patronus, item.species, item.wand, item.wizard, item.yearOfBirth)
                      navController.currentBackStackEntry?.savedStateHandle?.set(
                          "characters",
                          character

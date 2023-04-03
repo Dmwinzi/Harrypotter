@@ -1,6 +1,7 @@
 package com.example.harrypotter.DI
 
 import com.example.harrypotter.Domain.Repository.Repository
+import com.example.harrypotter.Util.Constants
 import com.google.gson.GsonBuilder
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +18,7 @@ object Module {
     @Singleton
     fun provideRetrofit() : Retrofit{
         return Retrofit.Builder()
-            .baseUrl("https://hp-api.onrender.com/api/")
+            .baseUrl(Constants.base_url)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .build()
     }
